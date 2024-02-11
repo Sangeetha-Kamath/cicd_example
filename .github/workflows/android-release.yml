@@ -3,7 +3,7 @@ name: Flutter Build, Release and Deploy
 "on":
   push:
     branches:
-      - main
+      - generate_aab_pipeline
 
 
 #Our first job is Run a flutter test and analyze
@@ -73,7 +73,7 @@ jobs:
         with:
           name: release-appbundle
           path: build/app/outputs/bundle/release/app_release.aab
-          
+
 
 
       
