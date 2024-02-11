@@ -26,7 +26,6 @@ jobs:
       - run: flutter test
 
 #generate apk file
-jobs:
   build_apk:
     name: generate apk file
     needs: [flutter_test]
