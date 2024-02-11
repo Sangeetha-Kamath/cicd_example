@@ -53,6 +53,7 @@ jobs:
   build_appbundle:
     name: Generate appbundle files
     needs: [flutter_test]
+    runs-on: Ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-java@v1
