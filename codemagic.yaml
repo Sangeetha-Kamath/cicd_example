@@ -1,20 +1,29 @@
 workflows:
-  flutter-android-build:
-    name: Flutter Android Build
-    max_build_duration: 60
+  android-release:
+    name: Android Release Build
 
     environment:
+      groups:
+        - keystore_credentials   # 👈 your group name
+
       flutter: stable
 
     scripts:
       - name: Get dependencies
         script: flutter pub get
 
-      - name: Analyze project
-        script: flutter analyze
+      - name: Decode keystore
+        script: |
+          echo $KEYSTORE | base64 --decode > android/app/upload-keystore.jks
 
-      - name: Run tests
-        script: flutter test
+      - name: Create key.properties
+        script: |
+          cat > android/key.properties <<EOF
+          storePassword=$KEYSTORE_PASSWORD
+          keyPassword=$KEY_PASSWORD
+          keyAlias=$KEY_ALIAS
+          storeFile=upload-keystore.jks
+          EOF
 
       - name: Build APK
         script: flutter build apk --release
