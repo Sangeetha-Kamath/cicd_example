@@ -27,6 +27,8 @@ workflows:
 
       - name: Build APK
         script: flutter build apk --release
+      - name: Build AAB
+        script: flutter build aab --release
 
     artifacts:
       - build/app/outputs/flutter-apk/app-release.apk
